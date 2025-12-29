@@ -3,49 +3,48 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 3;
-    public int currentHealth;
-    public HealthUI healthUI;
-
+    [Header("Invincibility")]
+    public float invincibilityDuration = 0.2f;
     private float nextDamageTime;
-    private float invincibilityDuration = 0.2f;
 
+    [Header("Visual")]
     private SpriteRenderer sr;
     private Color originalColor;
 
     void Start()
     {
-        maxHealth = PlayerStats.Instance.maxHealth;
-        currentHealth = maxHealth;
-
         sr = GetComponent<SpriteRenderer>();
-        originalColor = sr.color;
-
-        if (healthUI != null)
-            healthUI.UpdateHearts(currentHealth);
+        if (sr != null)
+            originalColor = sr.color;
     }
 
+    // DÜŞMAN / MERMİ vs. BURAYI ÇAĞIRIR
     public void TakeDamage(int damage)
     {
-        if (Time.time < nextDamageTime) return;
+        if (Time.time < nextDamageTime)
+            return;
 
-        currentHealth -= damage;
+        if (PlayerStats.Instance == null)
+            return;
+
         nextDamageTime = Time.time + invincibilityDuration;
 
+        // HASARI GERÇEKTEN BURADA VERİYORUZ
+        PlayerStats.Instance.TakeDamage(damage);
+
         StopAllCoroutines();
-        StartCoroutine(HitFlash());   // KIRMIZI OL
+        StartCoroutine(HitFlash());
 
-        if (healthUI != null)
-            healthUI.UpdateHearts(currentHealth);
+        Debug.Log("Player HP: " + PlayerStats.Instance.currentHealth);
 
-        Debug.Log("Player HP: " + currentHealth);
-
-        if (currentHealth <= 0)
+        if (PlayerStats.Instance.currentHealth <= 0)
             Die();
     }
 
     IEnumerator HitFlash()
     {
+        if (sr == null) yield break;
+
         sr.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         sr.color = originalColor;
@@ -54,6 +53,13 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         Debug.Log("PLAYER DEAD");
+
+        // Şimdilik oyunu durdur
         Time.timeScale = 0f;
+
+        // İleride:
+        // Respawn
+        // Game Over UI
+        // Save / Load
     }
 }

@@ -5,15 +5,19 @@ public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats Instance;
 
-    [Header("Gold")]
-    public int gold = 0;
+    [Header("Health")]
+    public int maxHealth = 3;
+    public int currentHealth;
 
     [Header("Stats")]
-    public int maxHealth = 3;
     public int damage = 1;
     public float moveSpeed = 5f;
 
-    // EVENT
+    [Header("Gold")]
+    public int gold = 0;
+
+    // EVENTS
+    public event Action<int, int> OnHealthChanged; // current, max
     public event Action<int> OnGoldChanged;
 
     void Awake()
@@ -22,21 +26,49 @@ public class PlayerStats : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+
+            // 🔴 SADECE OYUN İLK BAŞLARKEN
+            currentHealth = maxHealth;
         }
         else
         {
             Destroy(gameObject);
+            return;
         }
     }
 
-    // GOLD EKLE
+    // ---------- HEALTH ----------
+
+    public void TakeDamage(int amount)
+    {
+        currentHealth -= amount;
+        if (currentHealth < 0)
+            currentHealth = 0;
+
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+    }
+
+    public void IncreaseMaxHealth(int amount)
+    {
+        maxHealth += amount;
+
+        // ❗ SADECE EKLENEN KADAR CAN EKLE
+        currentHealth += amount;
+
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
+
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+    }
+
+    // ---------- GOLD ----------
+
     public void AddGold(int amount)
     {
         gold += amount;
         OnGoldChanged?.Invoke(gold);
     }
 
-    // GOLD HARCA
     public bool SpendGold(int amount)
     {
         if (gold < amount)

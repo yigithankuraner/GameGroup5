@@ -1,27 +1,58 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class HealthUI : MonoBehaviour
 {
-    public Transform heartsContainer;
+    public GameObject heartPrefab;
+    public Transform heartContainer;
 
-    // Bu fonksiyon artık Update içinde değil, sadece can değişince çalışır
-    public void UpdateHearts(int currentHealth)
+    private List<GameObject> hearts = new List<GameObject>();
+
+    void Start()
     {
-        // Container içindeki tüm çocukları (kalpleri) döngüye alıyoruz
-        for (int i = 0; i < heartsContainer.childCount; i++)
+        // 🔴 SAHNEDE VAR OLAN KALPLERİ TEMİZLE
+        hearts.Clear();
+
+        for (int i = heartContainer.childCount - 1; i >= 0; i--)
         {
-            // i değeri 0'dan başladığı için can miktarıyla kıyaslıyoruz
-            if (i < currentHealth)
-            {
-                // Can varsa objeyi aktif et
-                heartsContainer.GetChild(i).gameObject.SetActive(true);
-            }
-            else
-            {
-                // Can bittiyse objeyi tamamen gizle
-                heartsContainer.GetChild(i).gameObject.SetActive(false);
-            }
+            Destroy(heartContainer.GetChild(i).gameObject);
+        }
+
+        if (PlayerStats.Instance != null)
+        {
+            PlayerStats.Instance.OnHealthChanged += UpdateHearts;
+            UpdateHearts(
+                PlayerStats.Instance.currentHealth,
+                PlayerStats.Instance.maxHealth
+            );
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (PlayerStats.Instance != null)
+            PlayerStats.Instance.OnHealthChanged -= UpdateHearts;
+    }
+
+    void UpdateHearts(int current, int max)
+    {
+        while (hearts.Count > max)
+        {
+            Destroy(hearts[hearts.Count - 1]);
+            hearts.RemoveAt(hearts.Count - 1);
+        }
+
+        while (hearts.Count < max)
+        {
+            GameObject heart = Instantiate(heartPrefab, heartContainer);
+            hearts.Add(heart);
+        }
+
+        for (int i = 0; i < hearts.Count; i++)
+        {
+            Image img = hearts[i].GetComponent<Image>();
+            img.enabled = i < current;
         }
     }
 }
