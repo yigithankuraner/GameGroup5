@@ -5,15 +5,20 @@ public class LevelTransition : MonoBehaviour
 {
     public int sceneIndex;
 
-    private bool playerIsAtDoor;
-    private bool shopUsed;
+    private bool playerIsAtDoor = false;
+    private bool shopUsed = false;
 
     void Update()
     {
+        // 🔒 Shop açıkken kapı hiçbir şey yapmaz
+        if (ShopManager.Instance != null && ShopManager.Instance.IsShopOpen)
+            return;
+
         if (!playerIsAtDoor) return;
 
         if (Input.GetKeyDown(KeyCode.E))
         {
+            // 1️⃣ İlk E → Shop aç
             if (!shopUsed)
             {
                 if (ShopManager.Instance != null)
@@ -21,11 +26,8 @@ public class LevelTransition : MonoBehaviour
                     ShopManager.Instance.OpenShop();
                     shopUsed = true;
                 }
-                else
-                {
-                    Debug.LogError("ShopManager.Instance NULL! GlobalShopManager sahnede mi?");
-                }
             }
+            // 2️⃣ İkinci E → Level değiştir
             else
             {
                 SceneManager.LoadScene(sceneIndex);
@@ -33,13 +35,13 @@ public class LevelTransition : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
             playerIsAtDoor = true;
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
             playerIsAtDoor = false;
