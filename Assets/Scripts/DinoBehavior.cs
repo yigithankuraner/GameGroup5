@@ -2,88 +2,128 @@ using UnityEngine;
 
 public class DinoAI : MonoBehaviour
 {
-    public float detectRange = 5f;
-    public float chaseSpeed = 6f;
-    public float patrolSpeed = 2f;
-    public float stopDistance = 1.2f;
+    public float walkSpeed = 2f;
+    public float runSpeed = 5f;
 
     public Transform pointA;
     public Transform pointB;
 
-    public Animator anim;
+    public float visionRange = 8f;
+    public float attackRange = 1.5f;
+
+    public float attackCooldown = 2f;
+    public float attackDelay = 1f;
+
     public Transform player;
 
-    private bool facingRight = false;
-    private Transform currentPatrolTarget;
+    private Rigidbody2D rb;
+    private Animator anim;
+    private SpriteRenderer spriteRenderer;
+
+    private float attackTimer;
+    private float prepareTimer;
+    private Transform currentTarget;
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if (playerObj != null) player = playerObj.transform;
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
-        currentPatrolTarget = pointB;
+        currentTarget = pointB;
+
+        if (player == null)
+        {
+            GameObject p = GameObject.FindGameObjectWithTag("Player");
+            if (p != null) player = p.transform;
+        }
     }
 
     void Update()
     {
-        if (player == null || pointA == null || pointB == null) return;
+        if (player == null) return;
 
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        float distanceToPlayer = Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(player.position.x, player.position.y));
 
-        if (distanceToPlayer < detectRange)
+        attackTimer -= Time.deltaTime;
+
+        if (distanceToPlayer < attackRange)
         {
-            anim.SetBool("isAttacking", true);
-            LookAtTarget(player.position.x);
-
-            if (distanceToPlayer > stopDistance)
-            {
-                Vector2 targetPos = new Vector2(player.position.x, transform.position.y);
-                transform.position = Vector2.MoveTowards(transform.position, targetPos, chaseSpeed * Time.deltaTime);
-            }
+            StopAndAttack();
         }
         else
         {
-            anim.SetBool("isAttacking", false);
-            LookAtTarget(currentPatrolTarget.position.x);
+            prepareTimer = 0;
 
-            Vector2 patrolPos = new Vector2(currentPatrolTarget.position.x, transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, patrolPos, patrolSpeed * Time.deltaTime);
-
-            if (Mathf.Abs(transform.position.x - currentPatrolTarget.position.x) < 0.5f)
+            if (distanceToPlayer < visionRange)
             {
-                if (currentPatrolTarget == pointB)
-                    currentPatrolTarget = pointA;
-                else
-                    currentPatrolTarget = pointB;
+                ChasePlayer();
+            }
+            else
+            {
+                Patrol();
             }
         }
     }
 
-    void LookAtTarget(float targetXPosition)
+    void Patrol()
     {
-        if (targetXPosition > transform.position.x && !facingRight)
+        if (anim != null) anim.SetBool("isRunning", false);
+
+        transform.position = Vector2.MoveTowards(transform.position, currentTarget.position, walkSpeed * Time.deltaTime);
+
+        float distanceToTarget = Vector2.Distance(new Vector2(transform.position.x, transform.position.y), new Vector2(currentTarget.position.x, currentTarget.position.y));
+
+        if (distanceToTarget < 0.2f)
         {
-            Flip();
+            if (currentTarget == pointB) currentTarget = pointA;
+            else currentTarget = pointB;
         }
-        else if (targetXPosition < transform.position.x && facingRight)
+
+        if (currentTarget.position.x > transform.position.x) spriteRenderer.flipX = true;
+        else spriteRenderer.flipX = false;
+    }
+
+    void ChasePlayer()
+    {
+        if (anim != null) anim.SetBool("isRunning", true);
+
+        if (player.position.x > transform.position.x)
         {
-            Flip();
+            spriteRenderer.flipX = true;
+            rb.linearVelocity = new Vector2(runSpeed, rb.linearVelocity.y);
+        }
+        else
+        {
+            spriteRenderer.flipX = false;
+            rb.linearVelocity = new Vector2(-runSpeed, rb.linearVelocity.y);
         }
     }
 
-    void Flip()
+    void StopAndAttack()
     {
-        facingRight = !facingRight;
-        Vector3 scaler = transform.localScale;
-        scaler.x *= -1;
-        transform.localScale = scaler;
+        rb.linearVelocity = Vector2.zero;
+
+        if (anim != null) anim.SetBool("isRunning", false);
+
+        if (player.position.x > transform.position.x) spriteRenderer.flipX = true;
+        else spriteRenderer.flipX = false;
+
+        prepareTimer += Time.deltaTime;
+
+        if (prepareTimer >= attackDelay && attackTimer <= 0)
+        {
+            if (anim != null) anim.SetTrigger("attack");
+            attackTimer = attackCooldown;
+        }
     }
 
-    void OnDrawGizmosSelected()
+    void OnDrawGizmos()
     {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, visionRange);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectRange);
+        Gizmos.DrawWireSphere(transform.position, attackRange);
 
         if (pointA != null && pointB != null)
         {
