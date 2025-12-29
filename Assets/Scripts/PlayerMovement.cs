@@ -2,89 +2,51 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 8f;
-    public float jumpForce = 12f;
-    public float climbSpeed = 5f;
-
-    public Transform groundCheck;
-    public float checkRadius = 0.3f;
-    public LayerMask groundLayer;
+    public float speed = 5f;
+    public float jumpForce = 8f;
 
     private Rigidbody2D rb;
+    private SpriteRenderer sr;
+    private Animator anim;
+
     private bool isGrounded;
-    private float moveInput;
-    private float verticalInput;
-    private bool isClimbing;
-    private float defaultGravity;
-    private bool facingRight = true;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        defaultGravity = rb.gravityScale;
+        sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);
+        float moveX = Input.GetAxisRaw("Horizontal");
 
-        moveInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        // Yatay hareket
+        rb.linearVelocity = new Vector2(moveX * speed, rb.linearVelocity.y);
 
-        if (isClimbing)
-        {
-            rb.gravityScale = 0f;
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, verticalInput * climbSpeed);
+        // Flip
+        if (moveX != 0)
+            sr.flipX = moveX < 0;
 
-            if (verticalInput < 0 && facingRight) Flip();
-            else if (verticalInput > 0 && !facingRight) Flip();
+        // Koşma animasyonu
+        if (anim != null)
+            anim.SetFloat("Speed", Mathf.Abs(moveX));
 
-            return;
-        }
-        else
-        {
-            rb.gravityScale = defaultGravity;
-        }
-
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        // Zıplama
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-        }
-
-        if (isGrounded)
-        {
-            if (moveInput > 0 && !facingRight) Flip();
-            else if (moveInput < 0 && facingRight) Flip();
+            isGrounded = false;
         }
     }
 
-    void FixedUpdate()
+    // Zemin kontrolü
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
-    }
-
-    void Flip()
-    {
-        facingRight = !facingRight;
-        Vector3 scaler = transform.localScale;
-        scaler.x *= -1;
-        transform.localScale = scaler;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Ladder"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            isClimbing = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Ladder"))
-        {
-            isClimbing = false;
-            rb.gravityScale = defaultGravity;
+            isGrounded = true;
         }
     }
 }
