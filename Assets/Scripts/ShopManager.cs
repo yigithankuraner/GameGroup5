@@ -17,6 +17,8 @@ public class ShopManager : MonoBehaviour
     public int damagePrice = 15;
     public int speedPrice = 12;
 
+    public bool IsShopOpen { get; private set; } = false;
+
     void Awake()
     {
         if (Instance == null)
@@ -33,10 +35,9 @@ public class ShopManager : MonoBehaviour
 
     void Start()
     {
-        // Shop ilk başta kapalı
-        if (shopPanel != null) shopPanel.SetActive(false);
+        if (shopPanel != null)
+            shopPanel.SetActive(false);
 
-        // Gold event
         if (PlayerStats.Instance != null)
         {
             PlayerStats.Instance.OnGoldChanged += UpdateGoldUI;
@@ -56,22 +57,30 @@ public class ShopManager : MonoBehaviour
             shopGoldText.text = gold.ToString();
     }
 
+    // ---------------- SHOP OPEN / CLOSE ----------------
+
     public void OpenShop()
     {
-        Debug.Log("SHOP AÇILDI (GLOBAL)");
+        if (IsShopOpen) return;
+
+        IsShopOpen = true;
 
         shopPanel.SetActive(true);
-        shopPanel.transform.SetAsLastSibling(); // en üste al
+        shopPanel.transform.SetAsLastSibling(); // UI'da en üste al
         hudPanel.SetActive(false);
         Time.timeScale = 0f;
     }
 
     public void CloseShop()
     {
+        IsShopOpen = false;
+
         shopPanel.SetActive(false);
         hudPanel.SetActive(true);
         Time.timeScale = 1f;
     }
+
+    // ---------------- BUY METHODS ----------------
 
     public void BuyHealth()
     {
