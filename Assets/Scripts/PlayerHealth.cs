@@ -3,39 +3,30 @@ using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [Header("Invincibility")]
     public float invincibilityDuration = 0.2f;
     private float nextDamageTime;
 
-    [Header("Visual")]
     private SpriteRenderer sr;
     private Color originalColor;
 
     void Start()
     {
-        sr = GetComponent<SpriteRenderer>();
+        sr = GetComponentInChildren<SpriteRenderer>();
         if (sr != null)
             originalColor = sr.color;
     }
 
-    // DÜŞMAN / MERMİ vs. BURAYI ÇAĞIRIR
     public void TakeDamage(int damage)
     {
-        if (Time.time < nextDamageTime)
-            return;
-
-        if (PlayerStats.Instance == null)
-            return;
-
+        if (Time.time < nextDamageTime) return;
         nextDamageTime = Time.time + invincibilityDuration;
 
-        // HASARI GERÇEKTEN BURADA VERİYORUZ
+        if (PlayerStats.Instance == null) return;
+
         PlayerStats.Instance.TakeDamage(damage);
 
         StopAllCoroutines();
         StartCoroutine(HitFlash());
-
-        Debug.Log("Player HP: " + PlayerStats.Instance.currentHealth);
 
         if (PlayerStats.Instance.currentHealth <= 0)
             Die();
@@ -50,16 +41,42 @@ public class PlayerHealth : MonoBehaviour
         sr.color = originalColor;
     }
 
-    void Die()
+   void Die()
+{
+    Debug.Log("PLAYER DEAD");
+
+    // 1️⃣ Player hareketini kapat
+    PlayerMovement movement = GetComponent<PlayerMovement>();
+    if (movement != null)
+        movement.enabled = false;
+
+    // 2️⃣ Silahı kapat
+    Weapon weapon = GetComponent<Weapon>();
+    if (weapon != null)
+        weapon.enabled = false;
+
+    // 3️⃣ Rigidbody'yi durdur
+    Rigidbody2D rb = GetComponent<Rigidbody2D>();
+    if (rb != null)
     {
-        Debug.Log("PLAYER DEAD");
-
-        // Şimdilik oyunu durdur
-        Time.timeScale = 0f;
-
-        // İleride:
-        // Respawn
-        // Game Over UI
-        // Save / Load
+        rb.linearVelocity = Vector2.zero;
+        rb.simulated = false;
     }
+
+    // 4️⃣ Tüm collider'ları kapat (child dahil)
+    Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
+    foreach (Collider2D col in colliders)
+        col.enabled = false;
+
+    // 5️⃣ Death Screen çağır
+    if (DeathScreenManager.Instance != null)
+    {
+        DeathScreenManager.Instance.ShowDeathScreen();
+    }
+    else
+    {
+        Debug.LogError("DeathScreenManager.Instance NULL! Sahneye ekli mi?");
+    }
+}
+
 }
