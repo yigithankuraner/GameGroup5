@@ -31,7 +31,9 @@ public class EvolvingSkeleton : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player").transform;
 
         currentHealth = healthPhase1;
+
         bodyCollider.enabled = false;
+        rb.bodyType = RigidbodyType2D.Static;
     }
 
     void Update()
@@ -63,6 +65,8 @@ public class EvolvingSkeleton : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
+        rb.bodyType = RigidbodyType2D.Dynamic;
+
         isDead = false;
         isRising = false;
         bodyCollider.enabled = true;
@@ -80,7 +84,7 @@ public class EvolvingSkeleton : MonoBehaviour
         float direction = Mathf.Sign(player.position.x - transform.position.x);
         rb.linearVelocity = new Vector2(direction * moveSpeed, rb.linearVelocity.y);
 
-        if ((direction > 0 && transform.localScale.x < 0) || (direction < 0 && transform.localScale.x > 0))
+        if ((direction > 0 && transform.localScale.x > 0) || (direction < 0 && transform.localScale.x < 0))
         {
             Vector3 scale = transform.localScale;
             scale.x *= -1;
@@ -105,13 +109,13 @@ public class EvolvingSkeleton : MonoBehaviour
         isDead = true;
         bodyCollider.enabled = false;
         rb.linearVelocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Static;
 
         anim.SetTrigger("die");
 
         if (!isSecondPhase)
         {
             isSecondPhase = true;
-         
         }
 
         yield return new WaitForSeconds(reviveTime);

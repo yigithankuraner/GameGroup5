@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CatBehavior : MonoBehaviour
+public class HellGatoAI : MonoBehaviour
 {
+    public Vector3 forcedScale = new Vector3(5f, 5f, 1f);
+    public bool spriteFacesLeft = true;
+
     [Header("Settings")]
     public float detectionRange = 6f;
     public float tooCloseRange = 2.5f;
@@ -33,8 +36,10 @@ public class CatBehavior : MonoBehaviour
         anim = GetComponent<Animator>();
         currentState = State.Idle;
 
-        if (player == null)
+        if (player == null && GameObject.FindGameObjectWithTag("Player") != null)
             player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        if (spriteFacesLeft) isFacingRight = false;
     }
 
     void Update()
@@ -64,8 +69,31 @@ public class CatBehavior : MonoBehaviour
         UpdateAnimator();
     }
 
+    void LateUpdate()
+    {
+        Vector3 finalScale = forcedScale;
+
+        if (isFacingRight)
+        {
+            finalScale.x = Mathf.Abs(forcedScale.x);
+        }
+        else
+        {
+            finalScale.x = -Mathf.Abs(forcedScale.x);
+        }
+
+        if (spriteFacesLeft)
+        {
+            finalScale.x *= -1;
+        }
+
+        transform.localScale = finalScale;
+    }
+
     void HandleIdle()
     {
+        if (player == null) return;
+
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
         if (distanceToPlayer < tooCloseRange)
@@ -89,11 +117,14 @@ public class CatBehavior : MonoBehaviour
     {
         stateTimer -= Time.deltaTime;
 
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-        if (distanceToPlayer < tooCloseRange)
+        if (player != null)
         {
-            StartRetreat();
-            return;
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+            if (distanceToPlayer < tooCloseRange)
+            {
+                StartRetreat();
+                return;
+            }
         }
 
         if (stateTimer <= 0)
@@ -104,6 +135,8 @@ public class CatBehavior : MonoBehaviour
 
     void StartRetreat()
     {
+        if (player == null) return;
+
         currentState = State.Retreating;
         Vector2 direction = (transform.position - player.position).normalized;
         rb.linearVelocity = new Vector2(direction.x * retreatJumpForce, retreatJumpForce * 0.5f);
@@ -120,6 +153,8 @@ public class CatBehavior : MonoBehaviour
 
     void PerformAttack()
     {
+        if (player == null) return;
+
         currentState = State.Attacking;
         Vector2 direction = (player.position - transform.position).normalized;
 
@@ -151,11 +186,14 @@ public class CatBehavior : MonoBehaviour
 
     void CheckGround()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        if (groundCheck != null)
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
     void HandleSpriteFlip()
     {
+        if (player == null) return;
+
         if (currentState == State.Recovering || currentState == State.Preparing || currentState == State.Idle)
         {
             if (player.position.x > transform.position.x && !isFacingRight)
@@ -172,9 +210,6 @@ public class CatBehavior : MonoBehaviour
     void Flip()
     {
         isFacingRight = !isFacingRight;
-        Vector3 scaler = transform.localScale;
-        scaler.x *= -1;
-        transform.localScale = scaler;
     }
 
     void UpdateAnimator()
