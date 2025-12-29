@@ -265,6 +265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc7a4900aacb82047b5fe40a231f5ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 4687735753375923175, guid: e30fdbcc29bad2140a51667c08741c64, type: 3}
   firePoint: {fileID: 0}
   fireRate: 0.3

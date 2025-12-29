@@ -14,12 +14,22 @@ public class FrogBullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if (hitInfo.CompareTag("Enemy")) return;
+        // Enemy'ye çarpıyorsa yok say
+        if (hitInfo.CompareTag("Enemy"))
+            return;
 
+        // Player'a çarptıysa hasar ver
         if (hitInfo.CompareTag("Player"))
         {
+            PlayerHealth playerHealth = hitInfo.GetComponent<PlayerHealth>();
+
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(damage);
+            }
         }
 
+        // Her durumda mermiyi yok et
         Destroy(gameObject);
     }
 }

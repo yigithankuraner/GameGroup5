@@ -19,11 +19,13 @@ public class FrogBehavior : MonoBehaviour
 
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
+
     private float jumpTimer;
     private float fireTimer;
+
     private Transform currentTarget;
     private bool facingRight = true;
-    private bool isGrounded = false;
+    private bool isGrounded;
 
     void Start()
     {
@@ -37,20 +39,26 @@ public class FrogBehavior : MonoBehaviour
         }
 
         currentTarget = pointB;
+        fireTimer = fireRate; // KRİTİK: başlangıç
 
-        if (spriteRenderer != null) spriteRenderer.flipX = facingRight;
+        if (spriteRenderer != null)
+            spriteRenderer.flipX = facingRight;
     }
 
     void Update()
     {
         if (player == null) return;
 
+        // TIMER HER ZAMAN AKAR
+        fireTimer -= Time.deltaTime;
+        jumpTimer -= Time.deltaTime;
+
         isGrounded = Physics2D.Raycast(transform.position, Vector2.down, 1.2f, groundLayer);
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
         float heightDifference = Mathf.Abs(transform.position.y - player.position.y);
 
-        if (distanceToPlayer < attackRange && heightDifference < yTolerance)
+        if (distanceToPlayer <= attackRange && heightDifference <= yTolerance)
         {
             AttackBehavior();
         }
@@ -63,8 +71,6 @@ public class FrogBehavior : MonoBehaviour
     void PatrolBehavior()
     {
         LookAtTarget(currentTarget.position.x);
-
-        jumpTimer -= Time.deltaTime;
 
         if (jumpTimer <= 0 && isGrounded)
         {
@@ -80,12 +86,9 @@ public class FrogBehavior : MonoBehaviour
 
     void AttackBehavior()
     {
-        if (isGrounded) rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-
         LookAtTarget(player.position.x);
 
-        fireTimer -= Time.deltaTime;
-        if (fireTimer <= 0)
+        if (fireTimer <= 0f)
         {
             Shoot();
             fireTimer = fireRate;
@@ -118,18 +121,18 @@ public class FrogBehavior : MonoBehaviour
     {
         facingRight = !facingRight;
 
-        if (spriteRenderer != null) spriteRenderer.flipX = facingRight;
+        if (spriteRenderer != null)
+            spriteRenderer.flipX = facingRight;
 
         if (firePoint != null)
-        {
             firePoint.Rotate(0f, 180f, 0f);
-        }
     }
 
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * 1.2f);
     }
