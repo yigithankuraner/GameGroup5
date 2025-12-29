@@ -476,11 +476,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2851322179445854203, guid: 0b59fb26b23f9af4da92408dfb2aedc4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.78
+      value: -13.31
       objectReference: {fileID: 0}
     - target: {fileID: 2851322179445854203, guid: 0b59fb26b23f9af4da92408dfb2aedc4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.92
+      value: -6.04
       objectReference: {fileID: 0}
     - target: {fileID: 2851322179445854203, guid: 0b59fb26b23f9af4da92408dfb2aedc4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4995,52 +4995,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 326982669152108906, guid: 0b59fb26b23f9af4da92408dfb2aedc4, type: 3}
   m_PrefabInstance: {fileID: 230517405}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1249541223
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1249541225}
-  - component: {fileID: 1249541224}
-  m_Layer: 0
-  m_Name: GoldManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1249541224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249541223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49a8c458449d38d4fb11b66a0f9a2ce4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GoldManager
-  currentGold: 0
-  goldText: {fileID: 1292136620}
---- !u!4 &1249541225
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1249541223}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 873.2906, y: 558.8035, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1290322487
 GameObject:
   m_ObjectHideFlags: 0
@@ -5053,6 +5007,8 @@ GameObject:
   - component: {fileID: 1290322491}
   - component: {fileID: 1290322490}
   - component: {fileID: 1290322489}
+  - component: {fileID: 1290322492}
+  - component: {fileID: 1290322493}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5144,6 +5100,32 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1290322492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290322487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 248f27e168c3e8c4a9ddba5e42f4d7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlobalCanvasController
+--- !u!114 &1290322493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290322487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a8c458449d38d4fb11b66a0f9a2ce4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GoldManager
+  currentGold: 0
+  goldText: {fileID: 1292136620}
 --- !u!1 &1292136619
 GameObject:
   m_ObjectHideFlags: 0
@@ -5281,6 +5263,54 @@ RectTransform:
   m_AnchoredPosition: {x: 791.94025, y: 489}
   m_SizeDelta: {x: 134.1193, y: 98}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1375778712
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1375778713}
+  - component: {fileID: 1375778714}
+  m_Layer: 0
+  m_Name: PlayerStats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1375778713
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375778712}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.59644, y: -0.43546, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1375778714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375778712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 424c9b786829fc0499e368798a341b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  gold: 0
+  maxHealth: 3
+  damage: 1
+  moveSpeed: 5
 --- !u!1 &1379464258
 GameObject:
   m_ObjectHideFlags: 0
@@ -6308,8 +6338,8 @@ SceneRoots:
   - {fileID: 230517405}
   - {fileID: 1290322488}
   - {fileID: 2142671392}
-  - {fileID: 1249541225}
   - {fileID: 542352539}
   - {fileID: 1969783975}
   - {fileID: 845945059}
   - {fileID: 1786793758}
+  - {fileID: 1375778713}

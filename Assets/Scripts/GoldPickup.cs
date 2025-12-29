@@ -6,12 +6,12 @@ public class GoldPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Player"))
-            return;
+        if (!other.CompareTag("Player")) return;
 
-        GoldManager gm = FindObjectOfType<GoldManager>();
-        if (gm != null)
-            gm.AddGold(goldAmount);
+        if (PlayerStats.Instance != null)
+        {
+            PlayerStats.Instance.AddGold(goldAmount);
+        }
 
         Destroy(gameObject);
     }

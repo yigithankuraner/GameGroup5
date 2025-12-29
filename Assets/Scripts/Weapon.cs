@@ -43,10 +43,13 @@ public class Weapon : MonoBehaviour
 
     void Shoot()
     {
+        
+
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
 
         Bullet b = bullet.GetComponent<Bullet>();
         b.ownerTag = "Player";
+        b.damage = PlayerStats.Instance.damage;
 
         if (playerSR.flipX)
             bullet.transform.rotation = Quaternion.Euler(0, 0, 180);

@@ -3,28 +3,27 @@ using TMPro;
 
 public class GoldManager : MonoBehaviour
 {
-    public static GoldManager Instance;
-
-    public int currentGold = 0;
     public TMP_Text goldText;
 
-    void Awake()
+    void Start()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (PlayerStats.Instance != null)
+        {
+            PlayerStats.Instance.OnGoldChanged += UpdateUI;
+            UpdateUI(PlayerStats.Instance.gold);
+        }
     }
 
-    void Start() => UpdateUI();
-
-    public void AddGold(int amount)
+    void OnDestroy()
     {
-        currentGold += amount;
-        UpdateUI();
+        if (PlayerStats.Instance != null)
+        {
+            PlayerStats.Instance.OnGoldChanged -= UpdateUI;
+        }
     }
 
-    void UpdateUI()
+    void UpdateUI(int gold)
     {
-        if (goldText != null)
-            goldText.text = currentGold.ToString();
+        goldText.text = gold.ToString();
     }
 }
