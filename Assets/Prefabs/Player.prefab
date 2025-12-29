@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 2460259990928363158}
   - component: {fileID: 5172780430296405580}
   - component: {fileID: -6577370133335826267}
+  - component: {fileID: 619163402352469676}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -216,6 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   speed: 5
   jumpForce: 8
+  climbSpeed: 4
 --- !u!95 &2460259990928363158
 Animator:
   serializedVersion: 7
@@ -268,3 +270,15 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4687735753375923175, guid: e30fdbcc29bad2140a51667c08741c64, type: 3}
   firePoint: {fileID: 0}
   fireRate: 0.3
+--- !u!114 &619163402352469676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6268704075849520944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cac8866c93cce145b3212e4a8bba4e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPers
