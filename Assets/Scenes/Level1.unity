@@ -536,8 +536,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -461.97, y: 13.1966}
-  m_SizeDelta: {x: 397.48, y: 91.0937}
+  m_AnchoredPosition: {x: -272.34, y: 16.9892}
+  m_SizeDelta: {x: 250.28, y: 57.1154}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &165315754
 MonoBehaviour:
@@ -767,7 +767,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 39, y: 399}
+  m_AnchoredPosition: {x: 152, y: 83.743}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &201511727
@@ -1031,11 +1031,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2851322179445854203, guid: 0b59fb26b23f9af4da92408dfb2aedc4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.39
+      value: -10.69
       objectReference: {fileID: 0}
     - target: {fileID: 2851322179445854203, guid: 0b59fb26b23f9af4da92408dfb2aedc4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.79
+      value: -5.74
       objectReference: {fileID: 0}
     - target: {fileID: 2851322179445854203, guid: 0b59fb26b23f9af4da92408dfb2aedc4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3809,8 +3809,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -52.584, y: -5.0362}
-  m_SizeDelta: {x: 205.17, y: 89.927}
+  m_AnchoredPosition: {x: -24.677795, y: -0.00010872}
+  m_SizeDelta: {x: 189.6966, y: 34.176}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &378698140
 MonoBehaviour:
@@ -5999,8 +5999,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 791.94025, y: 489}
-  m_SizeDelta: {x: 134.1193, y: 98}
+  m_AnchoredPosition: {x: 339.7235, y: 153.16385}
+  m_SizeDelta: {x: 79.7494, y: 57.8264}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1295935812
 GameObject:
@@ -6255,8 +6255,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -460.96747, y: 311.0818}
-  m_SizeDelta: {x: 395.475, y: 96.6306}
+  m_AnchoredPosition: {x: -271.34, y: 83.743}
+  m_SizeDelta: {x: 248.28, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1394592849
 MonoBehaviour:
@@ -6467,8 +6467,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 42.885315, y: -344.50833}
-  m_SizeDelta: {x: 380.1628, y: 86.9833}
+  m_AnchoredPosition: {x: -23.3986, y: -157.6021}
+  m_SizeDelta: {x: 283.3657, y: 37.4592}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1607228837
 MonoBehaviour:
@@ -6600,8 +6600,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -458.47, y: -289.3281}
-  m_SizeDelta: {x: 390.48, y: 97.3439}
+  m_AnchoredPosition: {x: -272.34, y: -120.00879}
+  m_SizeDelta: {x: 250.28, y: 61.3263}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1610912925
 MonoBehaviour:
@@ -6733,8 +6733,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -804.8308, y: 500.07263}
-  m_SizeDelta: {x: 210.3385, y: -20.145325}
+  m_AnchoredPosition: {x: -318.64746, y: 169.83911}
+  m_SizeDelta: {x: 139.0436, y: -65.8235}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1710936832
 MonoBehaviour:
@@ -6879,8 +6879,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 909, y: 490}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 409.32898, y: 153.7539}
+  m_SizeDelta: {x: 59.4616, y: 59.0065}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1820237079
 MonoBehaviour:
@@ -7336,9 +7336,6 @@ MonoBehaviour:
   shopPanel: {fileID: 324169215}
   hudPanel: {fileID: 1204087528}
   shopGoldText: {fileID: 165866432}
-  buyHealthButton: {fileID: 0}
-  buyDamageButton: {fileID: 0}
-  buySpeedButton: {fileID: 0}
   healthPrice: 1
   damagePrice: 15
   speedPrice: 12

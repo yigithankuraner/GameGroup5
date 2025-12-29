@@ -6750,6 +6750,7 @@ GameObject:
   - component: {fileID: 861394333}
   - component: {fileID: 861394332}
   - component: {fileID: 861394331}
+  - component: {fileID: 861394337}
   m_Layer: 7
   m_Name: EnemyBat
   m_TagString: Enemy
@@ -6853,7 +6854,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -6937,12 +6938,28 @@ Transform:
   m_GameObject: {fileID: 861394330}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.465048, y: 10.92, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalPosition: {x: 7.472, y: 10.9235, z: 0}
+  m_LocalScale: {x: 3.974, y: 3.988, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &861394337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861394330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a089525c727fed428db157e5fbcc2ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxHealth: 4
+  goldReward: 5
+  goldPopupPrefab: {fileID: 8035045481231647825, guid: 1346e29bf36398f48a4c1c56c6bcfc97, type: 3}
+  popupYOffset: 0.3
 --- !u!1 &1012643317
 GameObject:
   m_ObjectHideFlags: 0
@@ -7036,6 +7053,14 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 1012643322}
     m_ColliderPaths:
+    - - X: 210000000
+        Y: 29375000
+      - X: 170000000
+        Y: 29375000
+      - X: 170000000
+        Y: 20000000
+      - X: 210000000
+        Y: 20000000
     - - X: 130000000
         Y: -90625000
       - X: -130000000
@@ -7046,6 +7071,10 @@ CompositeCollider2D:
         Y: -100000000
   m_CompositePaths:
     m_Paths:
+    - - {x: 20.999971, y: 2}
+      - {x: 20.999971, y: 2.9375}
+      - {x: 17, y: 2.937471}
+      - {x: 17.000029, y: 2}
     - - {x: 12.99997, y: -10}
       - {x: 12.99997, y: -9.0625}
       - {x: -13, y: -9.06253}
@@ -7444,15 +7473,55 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 17, y: 2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 18, y: 2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 19, y: 2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
+  - first: {x: 20, y: 2, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 26
+  - m_RefCount: 30
     m_Data: {fileID: 11400000, guid: f6860d3612070624386eb04e0704babf, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 26
+  - m_RefCount: 30
     m_Data: {fileID: 21300054, guid: 297a514ba6a7c44e6a1eac9511e640e5, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 26
+  - m_RefCount: 30
     m_Data:
       e00: 1
       e01: 0
@@ -7471,13 +7540,13 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 26
+  - m_RefCount: 30
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -13, y: -10, z: 0}
-  m_Size: {x: 26, y: 10, z: 1}
+  m_Size: {x: 34, y: 13, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -7759,9 +7828,10 @@ GameObject:
   - component: {fileID: 1552817175}
   - component: {fileID: 1552817174}
   - component: {fileID: 1552817173}
-  m_Layer: 0
+  - component: {fileID: 1552817179}
+  m_Layer: 7
   m_Name: EnemyBear
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7955,6 +8025,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1552817179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552817172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a089525c727fed428db157e5fbcc2ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxHealth: 8
+  goldReward: 10
+  goldPopupPrefab: {fileID: 8035045481231647825, guid: 1346e29bf36398f48a4c1c56c6bcfc97, type: 3}
+  popupYOffset: 0.3
 --- !u!1 &1888336096
 GameObject:
   m_ObjectHideFlags: 0
@@ -8072,7 +8158,51 @@ Transform:
   m_GameObject: {fileID: 1895716317}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.91, y: -8.82, z: 0}
+  m_LocalPosition: {x: -17.11, y: -8.64, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1912326951
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1912326953}
+  - component: {fileID: 1912326952}
+  m_Layer: 0
+  m_Name: PlayerSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1912326952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912326951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1e1f92e908390b4a9874fdf040d266e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnManager
+--- !u!4 &1912326953
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912326951}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 23.88, y: 8.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8092,9 +8222,10 @@ GameObject:
   - component: {fileID: 2054192175}
   - component: {fileID: 2054192174}
   - component: {fileID: 2054192173}
-  m_Layer: 0
+  - component: {fileID: 2054192179}
+  m_Layer: 7
   m_Name: EnemyPig
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8285,6 +8416,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2054192179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054192172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a089525c727fed428db157e5fbcc2ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxHealth: 6
+  goldReward: 5
+  goldPopupPrefab: {fileID: 8035045481231647825, guid: 1346e29bf36398f48a4c1c56c6bcfc97, type: 3}
+  popupYOffset: 0.3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -8301,3 +8448,4 @@ SceneRoots:
   - {fileID: 1552817178}
   - {fileID: 1272550139}
   - {fileID: 1895716318}
+  - {fileID: 1912326953}
