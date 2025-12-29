@@ -191,7 +191,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8035045481231647825}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0681a046ca7b5d4fa84c105162fef0d, type: 3}
+  m_Script: {fileID: 11500000, guid: bd26cd6c5e9d9cc48917904dc10270fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FloatingGoldText
   moveUpSpeed: 1

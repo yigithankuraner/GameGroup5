@@ -211,20 +211,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 3125567133628613998}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38502caf82ef5194782db4c03b62deba, type: 3}
+  m_Script: {fileID: 11500000, guid: 003245e9cbd1bbc4299b859d733638dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   speed: 2
-  patrolCheckDistance: 5
-  flipCooldown: 0.5
+  patrolCheckDistance: 0.15
+  flipCooldown: 0.4
   detectionRange: 6
   fireRate: 1
-  bulletPrefab: {fileID: 6700809661911035083, guid: 7770935ae3c17a9458cf14a5d8c2a7f2, type: 3}
+  bulletPrefab: {fileID: 0}
   firePoint: {fileID: 6093998956645433242}
   groundCheck: {fileID: 1881579863256480624}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
 --- !u!114 &5713690212082713482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,13 +234,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3125567133628613998}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15981861262c4924abbace9ae37600bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a089525c727fed428db157e5fbcc2ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 2
   goldReward: 5
-  goldPopupPrefab: {fileID: 8035045481231647825, guid: 740a09f3b1082994584e14ddaa0f6daf, type: 3}
-  popupYOffset: 0.6
+  goldPopupPrefab: {fileID: 0}
+  popupYOffset: 0.3
 --- !u!1 &8788950962121730419
 GameObject:
   m_ObjectHideFlags: 0
