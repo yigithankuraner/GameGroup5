@@ -6,11 +6,11 @@ public class ShopManager : MonoBehaviour
     public static ShopManager Instance;
 
     [Header("Panels")]
-    public GameObject shopPanel;   // GlobalCanvas altındaki ShopPanel
-    public GameObject hudPanel;    // GlobalCanvas altındaki HUD
+    public GameObject shopPanel;
+    public GameObject hudPanel;
 
     [Header("UI")]
-    public TMP_Text shopGoldText;  // ShopPanel içindeki ShopGoldText
+    public TMP_Text shopGoldText;
 
     [Header("Prices")]
     public int healthPrice = 10;
@@ -57,16 +57,15 @@ public class ShopManager : MonoBehaviour
             shopGoldText.text = gold.ToString();
     }
 
-    // ---------------- SHOP OPEN / CLOSE ----------------
+    // ---------- SHOP ----------
 
     public void OpenShop()
     {
         if (IsShopOpen) return;
 
         IsShopOpen = true;
-
         shopPanel.SetActive(true);
-        shopPanel.transform.SetAsLastSibling(); // UI'da en üste al
+        shopPanel.transform.SetAsLastSibling();
         hudPanel.SetActive(false);
         Time.timeScale = 0f;
     }
@@ -74,29 +73,34 @@ public class ShopManager : MonoBehaviour
     public void CloseShop()
     {
         IsShopOpen = false;
-
         shopPanel.SetActive(false);
         hudPanel.SetActive(true);
         Time.timeScale = 1f;
     }
 
-    // ---------------- BUY METHODS ----------------
+    // ---------- BUY ----------
 
     public void BuyHealth()
     {
-        if (!PlayerStats.Instance.SpendGold(healthPrice)) return;
-        PlayerStats.Instance.maxHealth += 1;
+        if (!PlayerStats.Instance.SpendGold(healthPrice))
+            return;
+
+        PlayerStats.Instance.IncreaseMaxHealth(1);
     }
 
     public void BuyDamage()
     {
-        if (!PlayerStats.Instance.SpendGold(damagePrice)) return;
+        if (!PlayerStats.Instance.SpendGold(damagePrice))
+            return;
+
         PlayerStats.Instance.damage += 1;
     }
 
     public void BuySpeed()
     {
-        if (!PlayerStats.Instance.SpendGold(speedPrice)) return;
+        if (!PlayerStats.Instance.SpendGold(speedPrice))
+            return;
+
         PlayerStats.Instance.moveSpeed += 0.5f;
     }
 }

@@ -946,7 +946,7 @@ Transform:
   m_GameObject: {fileID: 615059863}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.26, y: -1.85, z: 0}
+  m_LocalPosition: {x: 15.79, y: 10.11, z: 0}
   m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5138,8 +5138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a089525c727fed428db157e5fbcc2ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 2
-  goldReward: 5
+  maxHealth: 9
+  goldReward: 6
   goldPopupPrefab: {fileID: 8035045481231647825, guid: 1346e29bf36398f48a4c1c56c6bcfc97, type: 3}
   popupYOffset: 0.3
 --- !u!1 &1358667416
@@ -5679,7 +5679,7 @@ Transform:
   m_GameObject: {fileID: 1632941396}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.4776, y: 0.16, z: 0}
+  m_LocalPosition: {x: -4.71, y: 0.1, z: 0}
   m_LocalScale: {x: 4.237581, y: 4.050778, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5717,8 +5717,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a089525c727fed428db157e5fbcc2ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 2
-  goldReward: 5
+  maxHealth: 7
+  goldReward: 6
   goldPopupPrefab: {fileID: 8035045481231647825, guid: 1346e29bf36398f48a4c1c56c6bcfc97, type: 3}
   popupYOffset: 0.3
 --- !u!1 &1791854807
@@ -5976,7 +5976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a089525c727fed428db157e5fbcc2ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 2
+  maxHealth: 5
   goldReward: 5
   goldPopupPrefab: {fileID: 8035045481231647825, guid: 1346e29bf36398f48a4c1c56c6bcfc97, type: 3}
   popupYOffset: 0.3
