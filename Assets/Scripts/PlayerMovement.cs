@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        speed = PlayerStats.Instance.moveSpeed;
+
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();

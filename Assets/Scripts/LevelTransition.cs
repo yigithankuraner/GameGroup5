@@ -1,34 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelTransition : MonoBehaviour
 {
     public int sceneIndex;
-    private bool playerIsAtDoor = false;
+
+    private bool playerIsAtDoor;
+    private bool shopUsed;
 
     void Update()
     {
-        if (playerIsAtDoor && Input.GetKeyDown(KeyCode.E))
+        if (!playerIsAtDoor) return;
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            SceneManager.LoadScene(sceneIndex);
+            if (!shopUsed)
+            {
+                if (ShopManager.Instance != null)
+                {
+                    ShopManager.Instance.OpenShop();
+                    shopUsed = true;
+                }
+                else
+                {
+                    Debug.LogError("ShopManager.Instance NULL! GlobalShopManager sahnede mi?");
+                }
+            }
+            else
+            {
+                SceneManager.LoadScene(sceneIndex);
+            }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
-        {
             playerIsAtDoor = true;
-        }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
-        {
             playerIsAtDoor = false;
-        }
     }
 }

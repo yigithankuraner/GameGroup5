@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
+        maxHealth = PlayerStats.Instance.maxHealth;
         currentHealth = maxHealth;
 
         sr = GetComponent<SpriteRenderer>();

@@ -40,29 +40,24 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
 {
-    if (GoldManager.Instance != null)
-        GoldManager.Instance.AddGold(goldReward);
+    if (PlayerStats.Instance != null)
+        PlayerStats.Instance.AddGold(goldReward);
 
-    // Popup oluştur
+    // Popup (senin mevcut kodun aynen kalabilir)
     GameObject popup = Instantiate(
         goldPopupPrefab,
         transform.position,
         Quaternion.identity
     );
 
-    // Geçici olarak enemy'ye bağla
     popup.transform.SetParent(transform);
     popup.transform.localPosition = new Vector3(0f, popupYOffset, 0f);
-
-    // Sonra AYIR (kritik nokta)
     popup.transform.SetParent(null);
 
-    // Yazıyı ayarla
     TMP_Text t = popup.GetComponent<TMP_Text>();
     if (t != null)
         t.text = "+" + goldReward;
 
-    // Enemy'yi yok et
     Destroy(gameObject);
 }
 }
