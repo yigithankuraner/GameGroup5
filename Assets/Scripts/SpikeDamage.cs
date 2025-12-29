@@ -6,6 +6,7 @@ public class SpikeDamage : MonoBehaviour
 {
     public int damage = 1;
     public float knockbackForce = 10f;
+    public float damageDelay = 1f;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
