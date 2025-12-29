@@ -476,11 +476,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2851322179445854203, guid: 0b59fb26b23f9af4da92408dfb2aedc4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.91
+      value: -14.78
       objectReference: {fileID: 0}
     - target: {fileID: 2851322179445854203, guid: 0b59fb26b23f9af4da92408dfb2aedc4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.86
+      value: 8.92
       objectReference: {fileID: 0}
     - target: {fileID: 2851322179445854203, guid: 0b59fb26b23f9af4da92408dfb2aedc4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3890,7 +3890,7 @@ GameObject:
   - component: {fileID: 641405153}
   m_Layer: 7
   m_Name: EnemyVulture
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4745,7 +4745,7 @@ GameObject:
   - component: {fileID: 1054324276}
   m_Layer: 7
   m_Name: EnemySlime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5216,7 +5216,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -5248,7 +5248,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -0.00024414062, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5278,8 +5278,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 852, y: 515}
-  m_SizeDelta: {x: 77.4786, y: 50}
+  m_AnchoredPosition: {x: 791.94025, y: 489}
+  m_SizeDelta: {x: 134.1193, y: 98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1379464258
 GameObject:
@@ -5693,7 +5693,7 @@ GameObject:
   - component: {fileID: 1833908200}
   m_Layer: 7
   m_Name: EnemyDino
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
