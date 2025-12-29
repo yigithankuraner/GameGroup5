@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 19879dd11113046429634d3f4dacdc22
+guid: 85e28671da60f5547aba937ddd272854
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3107790135122119735
-    second: HellGato_Sleep-removebg-preview_0
+      213: 3310002292416464744
+    second: image-removebg-preview_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1000
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -87,7 +87,7 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 12
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HellGato_Sleep-removebg-preview_0
+      name: image-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 111
-        y: 33
-        width: 438
-        height: 217
+        x: 15
+        y: 4
+        width: 65
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 73cca6089a6112b20800000000000000
-      internalID: 3107790135122119735
+      spriteID: 867463d3c8d7fed20800000000000000
+      internalID: 3310002292416464744
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      HellGato_Sleep-removebg-preview_0: 3107790135122119735
+      image-removebg-preview_0: 3310002292416464744
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
