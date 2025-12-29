@@ -3160,7 +3160,7 @@ RectTransform:
   m_GameObject: {fileID: 378698138}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2029903623}
@@ -3170,8 +3170,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -52.585, y: -5.0363}
-  m_SizeDelta: {x: 205.17, y: 89.927}
+  m_AnchoredPosition: {x: -84.7, y: -27}
+  m_SizeDelta: {x: 234.0186, y: 82.6398}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &378698140
 MonoBehaviour:
@@ -5285,7 +5285,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -102.38898, y: 0, z: 125.632996, w: -3.6443481}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5315,7 +5315,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 852, y: 515}
+  m_AnchoredPosition: {x: 483, y: 164}
   m_SizeDelta: {x: 77.4786, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1379464258
@@ -5527,7 +5527,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -804.83075, y: 500.07263}
+  m_AnchoredPosition: {x: -298.63, y: 174}
   m_SizeDelta: {x: -1609.6615, y: -1000.1453}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1710936832
@@ -5615,8 +5615,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 909, y: 490}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 426.12823, y: 152.32417}
+  m_SizeDelta: {x: 61.7425, y: 65.3427}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1820237079
 MonoBehaviour:
