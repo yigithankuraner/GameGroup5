@@ -43,8 +43,12 @@ public class Weapon : MonoBehaviour
 
     void Shoot()
     {
-        
 
+        // Ateş etme (Shoot) fonksiyonunun içine ekle
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.Play(SoundManager.Instance.shoot);
+        }
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
 
         Bullet b = bullet.GetComponent<Bullet>();

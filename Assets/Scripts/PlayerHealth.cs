@@ -18,12 +18,18 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+
         if (Time.time < nextDamageTime) return;
         nextDamageTime = Time.time + invincibilityDuration;
 
         if (PlayerStats.Instance == null) return;
 
         PlayerStats.Instance.TakeDamage(damage);
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.Play(SoundManager.Instance.playerHit);
+        }
+
 
         StopAllCoroutines();
         StartCoroutine(HitFlash());

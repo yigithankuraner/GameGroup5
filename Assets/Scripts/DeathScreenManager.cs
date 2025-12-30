@@ -32,9 +32,18 @@ public class DeathScreenManager : MonoBehaviour
         }
     }
 
-    public void RestartGame()
+    public void GoToMainMenu()
     {
-        Time.timeScale = 1f; // Zamanı normale döndürmezsen yeni sahne de donuk olur
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // 1. Ölüm ekranı panelini kapat
+        if (deathScreen != null)
+        {
+            deathScreen.SetActive(false);
+        }
+
+        // 2. Zamanı normale döndür (Yoksa menüde hiçbir şeye basamazsın)
+        Time.timeScale = 1f;
+
+        // 3. Sahneyi yeniden yükle (Sahne yüklendiğinde MainMenuManager zaten menüyü açacak)
+        SceneManager.LoadScene("Level1");
     }
 }

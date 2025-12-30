@@ -23,7 +23,12 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+
         currentHealth -= damage;
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.Play(SoundManager.Instance.enemyHit);
+        }
         StopAllCoroutines();
         StartCoroutine(HitFlash());
 
