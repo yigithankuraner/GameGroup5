@@ -6723,6 +6723,7 @@ MonoBehaviour:
   goldReward: 6
   goldPopupPrefab: {fileID: 8035045481231647825, guid: 1346e29bf36398f48a4c1c56c6bcfc97, type: 3}
   popupYOffset: 0.3
+  deathEffectPrefab: {fileID: 2451885163650473871, guid: e1027c30546d9ab41b01328cfe5f50d3, type: 3}
 --- !u!1 &1358667416
 GameObject:
   m_ObjectHideFlags: 0
@@ -7302,6 +7303,7 @@ MonoBehaviour:
   goldReward: 6
   goldPopupPrefab: {fileID: 8035045481231647825, guid: 1346e29bf36398f48a4c1c56c6bcfc97, type: 3}
   popupYOffset: 0.3
+  deathEffectPrefab: {fileID: 2451885163650473871, guid: e1027c30546d9ab41b01328cfe5f50d3, type: 3}
 --- !u!1 &1791854807
 GameObject:
   m_ObjectHideFlags: 0
@@ -7561,6 +7563,7 @@ MonoBehaviour:
   goldReward: 5
   goldPopupPrefab: {fileID: 8035045481231647825, guid: 1346e29bf36398f48a4c1c56c6bcfc97, type: 3}
   popupYOffset: 0.3
+  deathEffectPrefab: {fileID: 2451885163650473871, guid: e1027c30546d9ab41b01328cfe5f50d3, type: 3}
 --- !u!1001 &2057864850
 PrefabInstance:
   m_ObjectHideFlags: 0

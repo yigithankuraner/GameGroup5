@@ -10,6 +10,7 @@ public class EnemyHealth : MonoBehaviour
     public int goldReward = 5;
     public GameObject goldPopupPrefab;
     public float popupYOffset = 0.3f;
+    public GameObject deathEffectPrefab; 
 
     private SpriteRenderer sr;
     private Color originalColor;
@@ -45,10 +46,13 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
 {
-    if (PlayerStats.Instance != null)
+        if (deathEffectPrefab != null)
+        {
+            Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
+        }
+        if (PlayerStats.Instance != null)
         PlayerStats.Instance.AddGold(goldReward);
 
-    // Popup (senin mevcut kodun aynen kalabilir)
     GameObject popup = Instantiate(
         goldPopupPrefab,
         transform.position,
@@ -62,6 +66,7 @@ public class EnemyHealth : MonoBehaviour
     TMP_Text t = popup.GetComponent<TMP_Text>();
     if (t != null)
         t.text = "+" + goldReward;
+
 
     Destroy(gameObject);
 }
