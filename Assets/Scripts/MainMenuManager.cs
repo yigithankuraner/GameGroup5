@@ -3,40 +3,47 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public GameObject mainMenuPanel; // Inspector'dan hazýrladýðýn paneli buraya sürükle
+    public GameObject mainMenuPanel;
+
+    // Bu deðiþken statiktir, yani sahne deðiþse bile hafýzada kalýr.
+    // True ise: Oyun ilk kez açýlýyor (Menü göster).
+    // False ise: Restart atýldý (Menüyü gösterme, oyunu baþlat).
+    public static bool ShowMenuOnStart = true;
+
     void Awake()
     {
-        // Sahne yüklendiði an paneli aktif et ve oyunu durdur
-        if (mainMenuPanel != null)
-        {
-            mainMenuPanel.SetActive(true); // Menü ekranýný açar
-            Time.timeScale = 0f; // Arkada oyunun baþlamasýný engeller
-        }
-    }
+        if (mainMenuPanel == null) return;
 
-    void Start()
-    {
-        // Eðer oyuna direkt bu sahneden baþlýyorsak zamaný dondur ve menüyü göster
-        if (mainMenuPanel != null && mainMenuPanel.activeSelf)
+        if (ShowMenuOnStart)
         {
+            // Oyun ilk açýldý veya "Ana Menüye Dön" denildi.
+            mainMenuPanel.SetActive(true);
             Time.timeScale = 0f;
         }
-    }
-
-    // NEW START butonu için fonksiyon
-    public void NewGame()
-    {
-        if (mainMenuPanel != null)
+        else
         {
-            mainMenuPanel.SetActive(false); // Menüyü kapat
-            Time.timeScale = 1f; // Zamaný baþlat
+            // Restart atýldý, menüyü gizle ve oyunu akýt.
+            mainMenuPanel.SetActive(false);
+            Time.timeScale = 1f;
         }
     }
 
-    // Öldüðünde menüye dönmek için fonksiyon
+    // "New Game" butonuna baðlayacaðýn fonksiyon
+    public void NewGame()
+    {
+        ShowMenuOnStart = false; // Artýk oyun baþladý
+        if (mainMenuPanel != null)
+        {
+            mainMenuPanel.SetActive(false);
+            Time.timeScale = 1f;
+        }
+    }
+
+    // Öldüðünde veya Win ekranýnda "Main Menu" butonuna basýnca çalýþacak
     public void BackToMainMenu()
     {
-        Time.timeScale = 1f; // Zamaný normale döndür
-        SceneManager.LoadScene("Level1"); // Sahneyi yeniden yükle
+        ShowMenuOnStart = true; // Menü açýlsýn istiyoruz
+        Time.timeScale = 1f; // Sahne yüklenirken zaman aksýn
+        SceneManager.LoadScene("Level1");
     }
 }

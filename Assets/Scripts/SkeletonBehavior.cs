@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class EvolvingSkeleton : MonoBehaviour
 {
-    [Header("Settings")]
+    [Header("Hareket ve Can Ayarlarý")]
     public float detectionRange = 5f;
     public float moveSpeed = 2f;
     public float reviveTime = 4f;
     public int healthPhase1 = 2;
     public int healthPhase2 = 4;
 
-    [Header("References")]
+    [Header("Altýn ve Efekt Ayarlarý")]
+    public int goldReward = 6;
+    public GameObject goldPopupPrefab;
+    public float popupYOffset = 0.3f;
+    public GameObject deathEffectPrefab;
+
+    [Header("Referanslar")]
     public Transform player;
     public BoxCollider2D bodyCollider;
+
+    [Header("Temas Hasarý")]
+    public int contactDamage = 1;
 
     private Animator anim;
     private Rigidbody2D rb;
@@ -27,17 +36,19 @@ public class EvolvingSkeleton : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
-        if (player == null)
+        if (player == null && GameObject.FindGameObjectWithTag("Player") != null)
             player = GameObject.FindGameObjectWithTag("Player").transform;
 
         currentHealth = healthPhase1;
-
         bodyCollider.enabled = false;
         rb.bodyType = RigidbodyType2D.Static;
+        isDead = true;
     }
 
     void Update()
     {
+        if (this == null) return;
+
         if (isDead)
         {
             HandleDormantState();
@@ -47,23 +58,75 @@ public class EvolvingSkeleton : MonoBehaviour
             HandleActiveState();
         }
     }
-    [Header("Contact Damage")]
-public int contactDamage = 1;
 
-private void OnCollisionEnter2D(Collision2D collision)
-{
-    if (!collision.gameObject.CompareTag("Player")) return;
-
-    PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-    if (playerHealth != null)
+    public void TakeDamage(int damage)
     {
-        playerHealth.TakeDamage(contactDamage);
-    }
-}
+        if (isDead || isRising) return;
 
+        currentHealth -= damage;
+        anim.SetTrigger("hit");
+
+        if (currentHealth <= 0)
+        {
+            if (isSecondPhase)
+            {
+                DiePermanently();
+            }
+            else
+            {
+                StartCoroutine(DieAndPrepareNextPhase());
+            }
+        }
+    }
+
+    IEnumerator DieAndPrepareNextPhase()
+    {
+        isRising = true;
+        isDead = true;
+
+        bodyCollider.enabled = false;
+        rb.linearVelocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Static;
+
+        anim.SetTrigger("die");
+
+        isSecondPhase = true;
+
+        yield return new WaitForSeconds(reviveTime);
+
+        isRising = false;
+    }
+
+    void DiePermanently()
+    {
+        if (PlayerStats.Instance != null)
+        {
+            PlayerStats.Instance.AddGold(goldReward);
+        }
+
+        if (deathEffectPrefab != null)
+        {
+            Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
+        }
+
+        if (goldPopupPrefab != null)
+        {
+            Vector3 popupPosition = transform.position + new Vector3(0, popupYOffset, 0);
+            Instantiate(goldPopupPrefab, popupPosition, Quaternion.identity);
+        }
+
+        anim.SetTrigger("die");
+        bodyCollider.enabled = false;
+        rb.linearVelocity = Vector2.zero;
+        rb.bodyType = RigidbodyType2D.Static;
+
+        this.enabled = false;
+        Destroy(gameObject, 0.5f);
+    }
 
     void HandleDormantState()
     {
+        if (player == null) return;
         float distance = Vector2.Distance(transform.position, player.position);
 
         if (distance < detectionRange && !isRising)
@@ -80,15 +143,11 @@ private void OnCollisionEnter2D(Collision2D collision)
         yield return new WaitForSeconds(1f);
 
         rb.bodyType = RigidbodyType2D.Dynamic;
-
         isDead = false;
         isRising = false;
         bodyCollider.enabled = true;
 
-        if (isSecondPhase)
-            currentHealth = healthPhase2;
-        else
-            currentHealth = healthPhase1;
+        currentHealth = healthPhase2;
     }
 
     void HandleActiveState()
@@ -106,38 +165,16 @@ private void OnCollisionEnter2D(Collision2D collision)
         }
     }
 
-    public void TakeDamage(int damage)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (isDead || isRising) return;
 
-        currentHealth -= damage;
-
-        if (currentHealth <= 0)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(DieAndPrepareNextPhase());
+            if (PlayerStats.Instance != null)
+            {
+                PlayerStats.Instance.TakeDamage(contactDamage);
+            }
         }
-    }
-
-    IEnumerator DieAndPrepareNextPhase()
-    {
-        isDead = true;
-        bodyCollider.enabled = false;
-        rb.linearVelocity = Vector2.zero;
-        rb.bodyType = RigidbodyType2D.Static;
-
-        anim.SetTrigger("die");
-
-        if (!isSecondPhase)
-        {
-            isSecondPhase = true;
-        }
-
-        yield return new WaitForSeconds(reviveTime);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, detectionRange);
     }
 }

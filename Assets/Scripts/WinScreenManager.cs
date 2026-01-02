@@ -35,16 +35,15 @@ public class WinScreenManager : MonoBehaviour
 
     public void RestartGame()
     {
-        // 1. Paneli kodla kapat (Kaybolmama sorununu bu çözer)
+        MainMenuManager.ShowMenuOnStart = false;
+
         if (winScreen != null)
-        {
             winScreen.SetActive(false);
+        if (PlayerStats.Instance != null)
+        {
+            PlayerStats.Instance.ResetGame();
         }
-
-        // 2. Zamaný normale döndür
         Time.timeScale = 1f;
-
-        // 3. Sahneyi yükle
         SceneManager.LoadScene("Level1");
     }
 }

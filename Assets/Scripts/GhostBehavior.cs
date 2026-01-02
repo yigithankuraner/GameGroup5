@@ -70,16 +70,26 @@ public class FlyingGhostAI : MonoBehaviour
     [Header("Damage")]
 public int damage = 1;
 
-private void OnTriggerEnter2D(Collider2D other)
-{
-    if (!other.CompareTag("Player")) return;
-
-    PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
-    if (playerHealth != null)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        playerHealth.TakeDamage(damage);
+        // Sadece oyuncuya çarpýnca çalýþ
+        if (!other.CompareTag("Player")) return;
+
+        // 1. YÖNTEM: Yeni PlayerStats sistemini kontrol et (Öncelikli)
+        if (PlayerStats.Instance != null)
+        {
+            PlayerStats.Instance.TakeDamage(damage);
+        }
+        // 2. YÖNTEM: Eðer Instance bulunamazsa, objenin üzerinden bulmaya çalýþ (Yedek)
+        else
+        {
+            PlayerStats stats = other.GetComponent<PlayerStats>();
+            if (stats != null)
+            {
+                stats.TakeDamage(damage);
+            }
+        }
     }
-}
 
 
     void OnDrawGizmosSelected()
