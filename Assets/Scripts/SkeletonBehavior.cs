@@ -2,26 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EvolvingSkeleton : MonoBehaviour
+public class SkeletonBehavior : MonoBehaviour
 {
-    [Header("Hareket ve Can Ayarlarý")]
     public float detectionRange = 5f;
     public float moveSpeed = 2f;
     public float reviveTime = 4f;
     public int healthPhase1 = 2;
     public int healthPhase2 = 4;
 
-    [Header("Altýn ve Efekt Ayarlarý")]
     public int goldReward = 6;
     public GameObject goldPopupPrefab;
     public float popupYOffset = 0.3f;
     public GameObject deathEffectPrefab;
 
-    [Header("Referanslar")]
     public Transform player;
     public BoxCollider2D bodyCollider;
 
-    [Header("Temas Hasarý")]
     public int contactDamage = 1;
 
     private Animator anim;

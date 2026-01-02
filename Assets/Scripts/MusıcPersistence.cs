@@ -6,7 +6,6 @@ public class MusicPersistence : MonoBehaviour
 
     void Awake()
     {
-        // Eğer bu objeden zaten bir tane varsa yenisini yok et
         if (instance != null)
         {
             Destroy(gameObject);
@@ -14,7 +13,6 @@ public class MusicPersistence : MonoBehaviour
         else
         {
             instance = this;
-            // Sahne değiştiğinde bu objeyi silme
             DontDestroyOnLoad(gameObject);
         }
     }

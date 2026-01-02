@@ -51,17 +51,14 @@ public class PlayerHealth : MonoBehaviour
 {
     Debug.Log("PLAYER DEAD");
 
-    // 1️⃣ Player hareketini kapat
     PlayerMovement movement = GetComponent<PlayerMovement>();
     if (movement != null)
         movement.enabled = false;
 
-    // 2️⃣ Silahı kapat
     Weapon weapon = GetComponent<Weapon>();
     if (weapon != null)
         weapon.enabled = false;
 
-    // 3️⃣ Rigidbody'yi durdur
     Rigidbody2D rb = GetComponent<Rigidbody2D>();
     if (rb != null)
     {
@@ -69,12 +66,10 @@ public class PlayerHealth : MonoBehaviour
         rb.simulated = false;
     }
 
-    // 4️⃣ Tüm collider'ları kapat (child dahil)
     Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
     foreach (Collider2D col in colliders)
         col.enabled = false;
 
-    // 5️⃣ Death Screen çağır
     if (DeathScreenManager.Instance != null)
     {
         DeathScreenManager.Instance.ShowDeathScreen();

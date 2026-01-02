@@ -17,7 +17,6 @@ public class WinScreenManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        // Sahne ilk açýldýðýnda panelin kapalý olduðundan emin ol
         if (winScreen != null)
         {
             winScreen.SetActive(false);

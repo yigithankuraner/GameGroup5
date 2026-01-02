@@ -15,24 +15,24 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Kendi sahibine veya zaten çarptıysa işlem yapma
+       
         if (hasHit || string.IsNullOrEmpty(ownerTag) || other.CompareTag(ownerTag))
             return;
 
-        // --- OYUNCUYA ÇARPARSA ---
+       
         if (other.CompareTag("Player"))
         {
-            // 1. Önce eski sistemi kontrol et (PlayerHealth)
+            
             PlayerHealth health = other.GetComponent<PlayerHealth>();
             if (health != null)
             {
                 hasHit = true;
                 health.TakeDamage(damage);
             }
-            // 2. Eğer PlayerHealth yoksa YENİ sistemi kontrol et (PlayerStats)
+           
             else
             {
-                PlayerStats stats = PlayerStats.Instance; // Singleton üzerinden veya GetComponent ile
+                PlayerStats stats = PlayerStats.Instance; 
                 if (stats == null) stats = other.GetComponent<PlayerStats>();
 
                 if (stats != null)
@@ -42,12 +42,12 @@ public class Bullet : MonoBehaviour
                 }
             }
         }
-        // --- DÜŞMANA ÇARPARSA ---
+        
         else if (other.CompareTag("Enemy"))
         {
             bool hitSomething = false;
 
-            // 1. Normal Düşman Kontrolü (Slime, Ghost vb.)
+           
             EnemyHealth normalEnemy = other.GetComponent<EnemyHealth>();
             if (normalEnemy != null)
             {
@@ -55,8 +55,8 @@ public class Bullet : MonoBehaviour
                 hitSomething = true;
             }
 
-            // 2. İSKELET BOSS KONTROLÜ (Bunu ekledik!)
-            EvolvingSkeleton skeletonBoss = other.GetComponent<EvolvingSkeleton>();
+           
+            SkeletonBehavior skeletonBoss = other.GetComponent<SkeletonBehavior>();
             if (skeletonBoss != null)
             {
                 skeletonBoss.TakeDamage(damage);
@@ -66,7 +66,7 @@ public class Bullet : MonoBehaviour
             if (hitSomething) hasHit = true;
         }
 
-        // Mermi bir şeye çarptı, yok et
+        
         Destroy(gameObject);
     }
 }

@@ -10,7 +10,6 @@ public class LevelTransition : MonoBehaviour
 
     void Update()
     {
-        // 🔒 Shop açıkken kapı hiçbir şey yapmaz
         if (ShopManager.Instance != null && ShopManager.Instance.IsShopOpen)
             return;
 
@@ -18,7 +17,6 @@ public class LevelTransition : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            // 1️⃣ İlk E → Shop aç
             if (!shopUsed)
             {
                 if (ShopManager.Instance != null)
@@ -27,7 +25,6 @@ public class LevelTransition : MonoBehaviour
                     shopUsed = true;
                 }
             }
-            // 2️⃣ İkinci E → Level değiştir
             else
             {
                 SceneManager.LoadScene(sceneIndex);

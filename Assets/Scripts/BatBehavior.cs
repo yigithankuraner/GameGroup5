@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BatBehavior : MonoBehaviour
 {
-    [Header("Ayarlar")]
+    
     public float flySpeed = 4f;
     public float detectionRange = 7f;
     public float zigzagAmount = 2f;

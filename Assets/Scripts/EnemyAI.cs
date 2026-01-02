@@ -21,7 +21,7 @@ public class EnemyAI : MonoBehaviour
     private SpriteRenderer sr;
     private Transform player;
 
-    private int direction = 1; // 1 = sağ, -1 = sol
+    private int direction = 1; 
     private float nextFireTime;
     private float lastFlipTime;
 
@@ -36,7 +36,7 @@ public class EnemyAI : MonoBehaviour
         if (playerObj != null)
             player = playerObj.transform;
 
-        // FirePoint başlangıç pozisyonu
+        
         firePointStartPos = firePoint.localPosition;
     }
 
@@ -52,7 +52,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    // -------------------- PATROL --------------------
+    
     void Patrol()
     {
         RaycastHit2D groundInfo = Physics2D.Raycast(
@@ -71,7 +71,7 @@ public class EnemyAI : MonoBehaviour
         rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
     }
 
-    // -------------------- COMBAT --------------------
+   
     void StopAndShoot()
     {
         rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
@@ -95,10 +95,10 @@ public class EnemyAI : MonoBehaviour
                 Quaternion.identity
             );
 
-            // Mermi kime ait
+           
             bullet.GetComponent<Bullet>().ownerTag = "Enemy";
 
-            // Sola bakıyorsa mermiyi çevir
+            
             if (direction == -1)
                 bullet.transform.rotation = Quaternion.Euler(0, 0, 180);
 
@@ -106,7 +106,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    // -------------------- UTILS --------------------
+   
     bool PlayerInSight()
     {
         if (player == null) return false;
@@ -123,7 +123,6 @@ public class EnemyAI : MonoBehaviour
     {
         sr.flipX = direction == -1;
 
-        // FirePoint'i aynala
         firePoint.localPosition = new Vector3(
             firePointStartPos.x * direction,
             firePointStartPos.y,
@@ -131,7 +130,6 @@ public class EnemyAI : MonoBehaviour
         );
     }
 
-    // -------------------- DEBUG --------------------
     void OnDrawGizmos()
     {
         if (groundCheck == null) return;

@@ -9,18 +9,17 @@ public class PlayerStats : MonoBehaviour
     [Header("Başlangıç Ayarları")]
     public int defaultMaxHealth = 3;
     public float defaultMoveSpeed = 5f;
-    public int defaultDamage = 1; // Hasar ayarı eklendi
+    public int defaultDamage = 1; 
 
     [Header("Anlık Durum")]
     public int maxHealth;
     public int currentHealth;
     public float moveSpeed;
-    public int damage; // ❗ Eksik olan değişken buydu, geri geldi.
+    public int damage; 
     public int gold = 0;
 
-    // EVENTS
-    public event Action<int, int> OnHealthChanged; // current, max
-    public event Action<int> OnGoldChanged;        // gold
+    public event Action<int, int> OnHealthChanged; 
+    public event Action<int> OnGoldChanged;        
 
     void Awake()
     {
@@ -29,7 +28,6 @@ public class PlayerStats : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            // İlk açılışta ayarları yükle
             maxHealth = defaultMaxHealth;
             currentHealth = maxHealth;
             moveSpeed = defaultMoveSpeed;
@@ -63,12 +61,11 @@ public class PlayerStats : MonoBehaviour
         OnGoldChanged?.Invoke(gold);
     }
 
-    // --- OYUNU SIFIRLAMA (Ölünce Restart Atınca) ---
     public void ResetGame()
     {
         maxHealth = defaultMaxHealth;
         currentHealth = maxHealth;
-        damage = defaultDamage; // Hasarı da sıfırlıyoruz
+        damage = defaultDamage; 
         moveSpeed = defaultMoveSpeed;
         gold = 0;
 
@@ -76,22 +73,18 @@ public class PlayerStats : MonoBehaviour
         OnGoldChanged?.Invoke(gold);
     }
 
-    // --- SAĞLIK SİSTEMİ ---
     public void TakeDamage(int damageAmount)
     {
         currentHealth -= damageAmount;
 
-        // --- EKSİK OLAN PARÇA BU ---
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            // Can bittiği an Ölüm Ekranı Yöneticisine haber ver
             if (DeathScreenManager.Instance != null)
             {
                 DeathScreenManager.Instance.ShowDeathScreen();
             }
         }
-        // ---------------------------
 
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
@@ -110,7 +103,6 @@ public class PlayerStats : MonoBehaviour
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
-    // --- ALTIN SİSTEMİ ---
     public void AddGold(int amount)
     {
         gold += amount;

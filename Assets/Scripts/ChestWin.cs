@@ -6,12 +6,12 @@ public class ChestWin : MonoBehaviour
 
     void Update()
     {
-        // Oyuncu yakýndaysa ve E tuþuna basarsa
+     
         if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))
         {
             if (WinScreenManager.Instance != null)
             {
-                WinScreenManager.Instance.ShowWinScreen(); // Zafer panelini açar
+                WinScreenManager.Instance.ShowWinScreen(); 
             }
             else
             {
@@ -22,7 +22,7 @@ public class ChestWin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) // Çarpanýn 'Player' tagine sahip olduðundan emin ol
+        if (other.CompareTag("Player")) 
         {
             isPlayerNearby = true;
             Debug.Log("Sandýða yaklaþtýn, 'E' tuþuna bas!");

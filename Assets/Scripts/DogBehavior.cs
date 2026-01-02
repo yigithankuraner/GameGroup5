@@ -2,22 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyDogAI : MonoBehaviour
+public class DogBehavior : MonoBehaviour
 {
-    [Header("Görsel Ayarý")]
     public bool spriteFacesLeft = false;
 
-    [Header("Patrol Settings")]
     public Transform pointA;
     public Transform pointB;
     public float patrolSpeed = 2f;
 
-    [Header("Chase Settings")]
     public float chaseSpeed = 6f;
     public float detectionRange = 5f;
     public float stopDistance = 1.5f;
 
-    [Header("Attack Settings")]
     public float attackRate = 1.5f;
     public int damage = 1;
 

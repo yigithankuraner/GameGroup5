@@ -5,14 +5,11 @@ public class ShopManager : MonoBehaviour
 {
     public static ShopManager Instance;
 
-    [Header("Panels")]
     public GameObject shopPanel;
     public GameObject hudPanel;
 
-    [Header("UI")]
     public TMP_Text shopGoldText;
 
-    [Header("Prices")]
     public int healthPrice = 10;
     public int damagePrice = 15;
     public int speedPrice = 12;
@@ -57,7 +54,6 @@ public class ShopManager : MonoBehaviour
             shopGoldText.text = gold.ToString();
     }
 
-    // ---------- SHOP ----------
 
     public void OpenShop()
     {
@@ -78,7 +74,6 @@ public class ShopManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    // ---------- BUY ----------
 
     public void BuyHealth()
     {

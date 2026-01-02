@@ -12,10 +12,8 @@ public class Weapon : MonoBehaviour
 
     void Start()
     {
-        // Player'ın SpriteRenderer'ını al
         playerSR = GetComponentInParent<SpriteRenderer>();
 
-        // FirePoint'in başlangıç local pozisyonu
         firePointStartPos = firePoint.localPosition;
     }
 
@@ -44,7 +42,6 @@ public class Weapon : MonoBehaviour
     void Shoot()
     {
 
-        // Ateş etme (Shoot) fonksiyonunun içine ekle
         if (SoundManager.Instance != null)
         {
             SoundManager.Instance.Play(SoundManager.Instance.shoot);

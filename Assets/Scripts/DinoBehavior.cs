@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DinoAI : MonoBehaviour
+public class DinoBehavior : MonoBehaviour
 {
     public float walkSpeed = 2f;
     public float runSpeed = 5f;

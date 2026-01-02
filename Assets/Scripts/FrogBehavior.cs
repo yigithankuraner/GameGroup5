@@ -39,7 +39,7 @@ public class FrogBehavior : MonoBehaviour
         }
 
         currentTarget = pointB;
-        fireTimer = fireRate; // KRİTİK: başlangıç
+        fireTimer = fireRate;
 
         if (spriteRenderer != null)
             spriteRenderer.flipX = facingRight;
@@ -49,7 +49,6 @@ public class FrogBehavior : MonoBehaviour
     {
         if (player == null) return;
 
-        // TIMER HER ZAMAN AKAR
         fireTimer -= Time.deltaTime;
         jumpTimer -= Time.deltaTime;
 

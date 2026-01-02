@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingGhostAI : MonoBehaviour
+public class GhostBehavior : MonoBehaviour
 {
     [Header("Settings")]
     public float moveSpeed = 3f;
@@ -72,15 +72,12 @@ public int damage = 1;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Sadece oyuncuya çarpýnca çalýþ
         if (!other.CompareTag("Player")) return;
 
-        // 1. YÖNTEM: Yeni PlayerStats sistemini kontrol et (Öncelikli)
         if (PlayerStats.Instance != null)
         {
             PlayerStats.Instance.TakeDamage(damage);
         }
-        // 2. YÖNTEM: Eðer Instance bulunamazsa, objenin üzerinden bulmaya çalýþ (Yedek)
         else
         {
             PlayerStats stats = other.GetComponent<PlayerStats>();
